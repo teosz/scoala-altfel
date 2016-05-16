@@ -1,0 +1,22 @@
+{
+  "name": "scoala-altfel",
+  "version": "0.0.0",
+  "authors": [
+    "Teodor Szente <teodor98sz@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "light-bootstrap-dashboard": "timcreative/light-bootstrap-dashboard"
+  }
+}

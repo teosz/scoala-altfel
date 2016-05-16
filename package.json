@@ -5,8 +5,15 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
+    "bootstrap-sass": "^3.3.0",
     "gulp": "^3.9.1",
+    "gulp-cssimport": "^3.0.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-sass-glob": "^1.0.6",
     "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.3.0"
+    "sass-glob-importer": "^1.0.1"
+  },
+  "dependencies": {
+    "gulp-css-globbing": "^0.1.8"
   }
 }
