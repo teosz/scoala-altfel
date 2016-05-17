@@ -13,3 +13,4 @@
 
 Route::auth();
 Route::get('/', 'HomeController@index');
+Route::get('/event', 'EventController@index');
