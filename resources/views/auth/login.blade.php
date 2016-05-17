@@ -1,66 +1,48 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Light Bootstrap Dashboard by Creative Tim</title>
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width" />
+  	<link href="assets/css/login.css" rel="stylesheet" />
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+	</head>
+	<body>
+    <form class="login" role="form" method="POST" action="{{ url('/login') }}" novalidate>
+      {!! csrf_field() !!}
+      <fieldset>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+      	<legend class="legend">Login</legend>
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="input">
+        	<input type="email" placeholder="Email" name="email" value="{{ old('email') }}" required />
+          <span><i class="fa fa-envelope-o"></i></span>
+          @if ($errors->has('email'))
+              <p class="error">{{ $errors->first('email') }}</p>
+          @endif
         </div>
-    </div>
-</div>
-@endsection
+
+        <div class="input">
+        	<input type="password" placeholder="Password" name="password" required />
+          <span><i class="fa fa-lock"></i></span>
+          @if ($errors->has('password'))
+              <p class="error">{{ $errors->first('password') }}</p>
+          @endif
+        </div>
+
+        <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
+
+      </fieldset>
+
+      <div class="feedback">
+      	login successful <br />
+        redirecting...
+      </div>
+
+    </form>
+	</body>
+</html>
