@@ -16,12 +16,10 @@ class EventController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function add()
+    {
+        return view('event/add');
+    }
     public function index()
     {
         return view('event/index');

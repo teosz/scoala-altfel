@@ -7,11 +7,10 @@
       <div class="card col-md-4">
       <div class="card-block">
           <h4 class="card-title">Eveniment 1</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Event description.</p>
           <ul class="list-group list-group-flush">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Vestibulum at eros</li>
+              <li class="list-group-item">Incepela ora 00:00 pe 01.01.1970 </li>
+              <li class="list-group-item">Profesor coordonator: Iuliana Serban</li>
           </ul>
       </div>
       <div class="card-block">

@@ -14,3 +14,4 @@
 Route::auth();
 Route::get('/', 'HomeController@index');
 Route::get('/event', 'EventController@index');
+Route::get('/event/add', 'EventController@add');
