@@ -9,10 +9,10 @@
         <div class="panel-body">
           @if (session('status') == 204)
               <div class="alert alert-success">
-                  Stock successfully added
+                  Event successfully added
               </div>
           @endif
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/event/create') }}">
+            <form class="form-horizontal" role="form" method="POST" action="">
                 {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">Name</label>
@@ -45,7 +45,7 @@
                   <div class="col-md-6">
                       <input type="text" class="form-control" name="end" value="{{ old('end') }}">
 
-                      @if ($errors->has('date'))
+                      @if ($errors->has('end'))
                           <span class="help-block">
                               <strong>{{ $errors->first('end') }}</strong>
                           </span>

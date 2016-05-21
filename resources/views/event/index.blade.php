@@ -4,23 +4,28 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <div class="card col-md-4">
-      <div class="card-block">
-          <h4 class="card-title">Eveniment 1</h4>
-          <p class="card-text">Event description.</p>
-          <ul class="list-group list-group-flush">
-              <li class="list-group-item">Incepela ora 00:00 pe 01.01.1970 </li>
-              <li class="list-group-item">Profesor coordonator: Iuliana Serban</li>
-          </ul>
-      </div>
-      <div class="card-block">
-          <a href="#" class="btn btn-primary">Join</a>
-      </div>
-      <div class="card-footer text-muted">
-        &nbsp;
-      </div>
-  </div>
-
+      @foreach ($events as $event)
+        <div class="card col-md-4">
+          <div class="card-block">
+              <p class="card-header pull-right">
+                <a href="/event/{{$event->name}}/edit" class="btn btn-link">Edit</a>
+                <a href="/event/{{$event->name}}/delete" class="btn btn-danger">Delete</a>
+              </p>
+              <h4 class="card-title"> {{ $event->name }}</h4>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Incepe pe {{ $event->start }} </li>
+                  <li class="list-group-item">Se termina la {{ $event->end }} </li>
+                  <li class="list-group-item">Profesor coordonator: {{ $event->user()->get()->first()->name }}</li>
+              </ul>
+          </div>
+          <div class="card-block">
+              <a href="#" class="btn btn-primary">Join</a>
+          </div>
+          <div class="card-footer text-muted">
+            &nbsp;
+          </div>
+        </div>
+      @endforeach
     </div>
   </div>
 </div>
@@ -29,7 +34,7 @@
 
 @section('navbar-right')
 <li>
-  <a class="red" href="{{ url('/event/add') }}">
+  <a class="red" href="{{ url('/event/create') }}">
     Add event
   </a>
 </li>
