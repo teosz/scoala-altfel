@@ -17,7 +17,7 @@
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">Name</label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="quantity" value="{{ old('name') }}">
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
 
                         @if ($errors->has('name'))
                             <span class="help-block">
@@ -27,14 +27,27 @@
 
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                  <label class="col-md-4 control-label">Date</label>
+                <div class="form-group{{ $errors->has('start') ? ' has-error' : '' }}">
+                  <label class="col-md-4 control-label">Start</label>
                   <div class="col-md-6">
-                      <input type="text" class="form-control" name="date" value="{{ old('date') }}">
+                      <input type="text" class="form-control" name="start" value="{{ old('start') }}">
+
+                      @if ($errors->has('start'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('start') }}</strong>
+                          </span>
+                      @endif
+
+                  </div>
+                </div>
+                <div class="form-group{{ $errors->has('end') ? ' has-error' : '' }}">
+                  <label class="col-md-4 control-label">End</label>
+                  <div class="col-md-6">
+                      <input type="text" class="form-control" name="end" value="{{ old('end') }}">
 
                       @if ($errors->has('date'))
                           <span class="help-block">
-                              <strong>{{ $errors->first('date') }}</strong>
+                              <strong>{{ $errors->first('end') }}</strong>
                           </span>
                       @endif
 
@@ -70,7 +83,8 @@
   <script src='http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js'></script>
   <script  type="text/javascript">
   $(document).ready(function () {
-    $('input[name=date]').datetimepicker();
+    $('input[name=start]').datetimepicker();
+    $('input[name=end]').datetimepicker();
   })
   </script>
 @endsection
