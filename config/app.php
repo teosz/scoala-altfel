@@ -160,7 +160,7 @@ return [
         /*
          * Custom Service Provides...
          */
-        Zizaco\Entrust\EntrustServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class
 
     ],
 

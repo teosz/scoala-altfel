@@ -12,16 +12,16 @@
                   Event successfully added
               </div>
           @endif
-            {{Form::open(array('method'=> 'post', 'class' => 'form-horizontal', 'action' => array('EventController@store'))) }}
-                @include('event.fields')
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-btn fa-plus"></i>Create
-                        </button>
-                    </div>
-                </div>
-            {{ Form::close() }}
+          {{Form::open(array('method'=> 'post', 'class' => 'form-horizontal', 'action' => array('EventController@store'))) }}
+              @include('event.fields')
+              <div class="form-group">
+                  <div class="col-md-6 col-md-offset-4">
+                      <button type="submit" class="btn btn-primary">
+                          <i class="fa fa-btn fa-plus"></i>Create
+                      </button>
+                  </div>
+              </div>
+          {{ Form::close() }}
         </div>
     </div>
 </div>

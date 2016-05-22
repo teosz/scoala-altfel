@@ -4,9 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c9a414098ef2f5f2204cdd6b51e1e445",
-    "content-hash": "eafe436eeb36e4c7d29b788af52a8d14",
+    "hash": "f54ae9e9042a64e75a0352cc9295efcd",
+    "content-hash": "d84ac10690b947aa6f30bb94092fa254",
     "packages": [
+        {
+            "name": "atbox/invi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Atbox/invi-l5.git",
+                "reference": "61ca786e18e2869b503785e5b0cf2cad1f51c843"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Atbox/invi-l5/zipball/61ca786e18e2869b503785e5b0cf2cad1f51c843",
+                "reference": "61ca786e18e2869b503785e5b0cf2cad1f51c843",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-0": {
+                    "Atbox\\Invi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Atbox",
+                    "email": "info@atbox.io",
+                    "role": "Publisher"
+                },
+                {
+                    "name": "Sajjad Rad",
+                    "email": "sajjad.273@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple invitation system api for laravel 5",
+            "keywords": [
+                "Invitation",
+                "Invite",
+                "laravel"
+            ],
+            "time": "2016-04-11 16:18:46"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
@@ -3129,7 +3180,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "zizaco/entrust": 20
+        "zizaco/entrust": 20,
+        "atbox/invi": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

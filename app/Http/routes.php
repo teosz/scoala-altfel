@@ -12,6 +12,9 @@
 */
 
 Route::auth();
+Route::get('/invite', 'InviteController@index');
+Route::post('/invite', 'InviteController@store');
+
 Route::get('/', 'HomeController@index');
 
 //Event controller routes

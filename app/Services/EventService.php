@@ -16,7 +16,7 @@ class EventService extends BaseService
     public static function create($input) {
       $event = null;
       try{
-        $input = EventService::parseDate($input);
+        $input = self::parseDate($input);
         $event = new Event($input);
         $event->user()->associate(Auth::user());
         $event->save();
@@ -48,7 +48,7 @@ class EventService extends BaseService
     }
     public static function update($event, $input) {
       try{
-        $input = EventService::parseDate($input);
+        $input = self::parseDate($input);
         $event->fill($input)->save();
       }
       catch(Exception $e) {
