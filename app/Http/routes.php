@@ -15,7 +15,21 @@ Route::auth();
 Route::get('/', 'HomeController@index');
 
 //Event controller routes
-Route::get('/event', 'EventController@index');
+Route::get('/event', [
+  'as' => 'event.index',
+  'uses' => 'EventController@index'
+]);
 Route::get('/event/create', 'EventController@create');
 Route::post('/event/create', 'EventController@store');
-Route::get('/event/{name}/edit', 'EventController@edit');
+Route::get('/event/{name}/edit', [
+  'as' => 'event.update',
+  'uses' => 'EventController@update'
+]);
+Route::patch('/event/{name}/edit', [
+  'as' => 'event.change',
+  'uses' => 'EventController@change'
+]);
+Route::delete('/event/{name}/delete', [
+  'as' => 'event.delete',
+  'uses' => 'EventController@delete'
+]);

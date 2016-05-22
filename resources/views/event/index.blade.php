@@ -9,7 +9,9 @@
           <div class="card-block">
               <p class="card-header pull-right">
                 <a href="/event/{{$event->name}}/edit" class="btn btn-link">Edit</a>
-                <a href="/event/{{$event->name}}/delete" class="btn btn-danger">Delete</a>
+                {{ Form::open(['method' => 'DELETE', 'route' => ['event.delete', $event->name] ]) }}
+                    {{ Form::submit('Delete', ['class' => 'btn btn-danger pull-right']) }}
+                {{ Form::close() }}
               </p>
               <h4 class="card-title"> {{ $event->name }}</h4>
               <ul class="list-group list-group-flush">

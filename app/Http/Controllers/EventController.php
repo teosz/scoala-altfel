@@ -33,14 +33,37 @@ class EventController extends Controller
       extract(EventService::create($input));
       return back()->with('status', $status);
     }
+    public function change($name, Request $request) {
+      $this->validate($request, [
+        'name' => 'required|max:255',
+        'start' => 'required|date',
+        'end' => 'required|date'
+      ]);
+      $input = $request->all();
+      extract(EventService::find_by_name($name));
+      extract(EventService::update($event, $input));
+      return redirect()->route('event.update', $event->name)->with('status', $status)->with('event', $event);
+
+    }
+    public function update($name) {
+      extract(EventService::find_by_name($name));
+      return view('event.update')->with('event', $event);
+
+    }
+    public function delete($name) {
+      extract(EventService::find_by_name($name));
+      EventService::delete($event);
+      return redirect()->route('event.index');
+
+    }
     public function create()
     {
-        return view('event/form');
+        return view('event.create');
     }
     public function index(Request $request)
     {
         $input = $request->all();
         extract(EventService::get($input));
-        return view('event/index')->with('events', $events);
+        return view('event.index')->with('events', $events);
     }
 }

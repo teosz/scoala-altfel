@@ -7,7 +7,7 @@ use App\Event;
 
 class EventService extends BaseService
 {
-    protected function parseDate($data)
+    protected static function parseDate($data)
     {
       $data['start'] = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $data['start'])));
       $data['end'] = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $data['end'])));
@@ -16,7 +16,7 @@ class EventService extends BaseService
     public static function create($input) {
       $event = null;
       try{
-        $input = $this::parseDate($input);
+        $input = EventService::parseDate($input);
         $event = new Event($input);
         $event->user()->associate(Auth::user());
         $event->save();
@@ -28,22 +28,45 @@ class EventService extends BaseService
         );
       } finally {
         return array(
-          'status' => 200,
+          'status' => 204,
           'event' => $event
         );
 
       }
     }
     public static function get() {
-      return array(
+      return [
         'status' => 200,
         'events' => Event::all()
-      );
+      ];
     }
-    public function update() {
+    public static function find_by_name($name) {
+      return [
+        'status' => 200,
+        'event' => Event::where('name', $name)->first()
+      ];
+    }
+    public static function update($event, $input) {
+      try{
+        $input = EventService::parseDate($input);
+        $event->fill($input)->save();
+      }
+      catch(Exception $e) {
 
+        return [
+          'status' => 500,
+          'error' => $e->getMessage()
+        ];
+      } finally {
+        return [
+          'status' => 204,
+          'event' => $event
+        ];
+      }
     }
-    public function delete() {
+    public static function delete($event) {
+      error_log($event);
+      $event->delete();
 
     }
 }
