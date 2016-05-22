@@ -1,5 +1,8 @@
 <?php
 $currentRoute = Route::getCurrentRoute()->getPath();
+$colors = ['blue', 'azure', 'green', 'orange', 'red', 'purple'];
+$color = $colors[rand(0, count($colors))];
+$img = rand(1,5)
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,7 +21,7 @@ $currentRoute = Route::getCurrentRoute()->getPath();
 	</head>
 	<body>
 		<div class="wrapper">
-			<div class="sidebar" data-color="red" data-image="/assets/img/sidebar-4.jpg">
+			<div class="sidebar" data-color="{{$color}}" data-image="/assets/img/sidebar-{{$img}}.jpg">
 				<!--
 					Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
 					Tip 2: you can also add an image using data-image tag
