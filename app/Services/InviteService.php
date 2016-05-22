@@ -7,9 +7,8 @@ use App\Invite;
 
 class InviteService extends BaseService
 {
-	public static function generate($email, $name ,$expire)
+	public static function generate($email, $name, $role, $expire)
 	{
-
 		$now = strtotime("now");
 		$format = 'Y-m-d H:i:s ';
 		$expiration = date($format, strtotime('+ '.$expire, $now));
@@ -18,11 +17,13 @@ class InviteService extends BaseService
 				"code"			=> $code,
 				"email"			=> $email,
 				"name"			=> $name,
+				"role"			=> $role,
 				"expiration"	=> $expiration,
-				"active"		=> true,
-				"used"			=> "0"
 			];
 		$invite = Invite::create($newInvi);
+		error_log("aici....");
+		error_log($role);
+		error_log(var_dump($invite->role));
 		return [
       'status' => 200,
       'invite' => $invite,
@@ -38,6 +39,24 @@ class InviteService extends BaseService
 	public static function get($code)
 	{
 		$temp = Invite::where('code', '=', $code)->first();
+		if($temp)
+		{
+			if(!$temp->active or $temp->used or strtotime("now") > strtotime($temp->expiration))
+				return [
+					'status' => 200,
+					'invite' => $temp,
+				];
+		}
+		else {
+			return [
+					'status' => 400,
+					'error' => 'Invalid code'
+			];
+		}
+	}
+	public static function get_by_email($email)
+	{
+		$temp = Invite::where('email', '=', $email)->first();
 		if($temp)
 		{
 			if(!$temp->active or $temp->used or strtotime("now") > strtotime($temp->expiration))

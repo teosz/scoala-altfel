@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Role;
 use App\Permission;
+use App\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,8 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $adminUser = User::create([
+            'name' => 'system_user',
+            'email' => 'system@scoalaaltfel.ro',
+            'password' => bcrypt('system_pass'),
+        ]);
         $student = new Role();
-        $student->name         = 'Student';
+        $student->name         = 'student';
         $student->display_name = 'Student';
         $student->description  = 'Activities member';
         $student->save();
@@ -77,5 +83,7 @@ class DatabaseSeeder extends Seeder
         $admin->attachPermissions([$createEvent, $readEvent, $updateEvent, $deleteEvent, $inviteUser, $deleteUser ]);
         $teacher->attachPermissions([$createEvent, $readEvent, $updateEvent, $deleteEvent]);
         $student->attachPermissions([$readEvent, $joinEvent]);
+
+        $adminUser->attachRole($admin);
     }
 }

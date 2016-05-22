@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Services\InviteService;
-
+use App\Role;
 class AuthController extends Controller
 {
     /*
@@ -69,6 +69,9 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        extract(InviteService::get_by_email($user->email));
+        $role = Role::find($invite->role);
+        $user->attachRole($role);
         InviteService::delete($user->email);
         return $user;
     }

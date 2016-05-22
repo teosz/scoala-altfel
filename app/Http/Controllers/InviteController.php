@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Jobs\SendInviteEmail;
 
 use App\Services\InviteService;
+use App\Role;
 
 
 class InviteController extends Controller
@@ -22,7 +23,7 @@ class InviteController extends Controller
         'name' => 'required|unique:events|max:255',
         'email' => 'required|email',
       ]);
-      extract(InviteService::generate($request['email'], $request['name'], '2 days'));
+      extract(InviteService::generate($request['email'], $request['name'],  $request['role'], '2 days'));
       $job = (new SendInviteEmail($invite))->onQueue('emails');
   		$this->dispatch($job);
       return back()->withInput()->with('status', $status);
@@ -36,6 +37,6 @@ class InviteController extends Controller
       }
     }
     public function index() {
-      return view('auth.invite');
+      return view('auth.invite')->withRoles(Role::all());
     }
 }

@@ -8,10 +8,14 @@
         <div class="card col-md-4">
           <div class="card-block">
               <p class="card-header pull-right">
-                <a href="/event/{{$event->name}}/edit" class="btn btn-link">Edit</a>
-                {{ Form::open(['method' => 'DELETE', 'route' => ['event.delete', $event->name] ]) }}
-                    {{ Form::submit('Delete', ['class' => 'btn btn-danger pull-right']) }}
-                {{ Form::close() }}
+                @if(Auth::user()->can('update-event'))
+                  <a href="/event/{{$event->name}}/edit" class="btn btn-link">Edit</a>
+                @endif
+                @if(Auth::user()->can('delete-event'))
+                  {{ Form::open(['method' => 'DELETE', 'route' => ['event.delete', $event->name] ]) }}
+                      {{ Form::submit('Delete', ['class' => 'btn btn-danger pull-right']) }}
+                  {{ Form::close() }}
+                @endif
               </p>
               <h4 class="card-title"> {{ $event->name }}</h4>
               <ul class="list-group list-group-flush">
@@ -35,9 +39,11 @@
 
 
 @section('navbar-right')
-<li>
-  <a class="red" href="{{ url('/event/create') }}">
-    Add event
-  </a>
-</li>
+  @if(Auth::user()->can('create-event'))
+  <li>
+    <a class="red" href="{{ url('/event/create') }}">
+      Add event
+    </a>
+  </li>
+  @endif
 @endsection
