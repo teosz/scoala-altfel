@@ -42,12 +42,14 @@ $currentRoute = Route::getCurrentRoute()->getPath();
 								<p>Events</p>
 							</a>
 						</li>
-						<li>
-							<a href="user.html">
-								<i class="pe-7s-user"></i>
-								<p>My profile</p>
-							</a>
-						</li>
+						@if(Auth::user()->can('invite-user'))
+							<li>
+								<a href="/invite">
+									<i class="pe-7s-user"></i>
+									<p>Invite</p>
+								</a>
+							</li>
+						@endif
 					</ul>
 				</div>
 			</div>

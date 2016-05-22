@@ -25,7 +25,7 @@
               </ul>
           </div>
           <div class="card-block">
-              <a href="#" class="btn btn-primary">Join</a>
+              <a href="#" class="btn btn-primary join">Join</a>
           </div>
           <div class="card-footer text-muted">
             &nbsp;
