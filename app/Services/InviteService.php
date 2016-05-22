@@ -30,83 +30,34 @@ class InviteService extends BaseService
 
 
 	}
-	public function used($code,$email)
-	{
-		Invitation::where('code','=',$code)->where('email','=',$email)
-				->update(array('used'=>True));
-	}
 	public function unuse($code,$email)
 	{
 		Invitation::where('code','=',$code)->where('email','=',$email)
 				->update(array('used'=>False));
 	}
-	public function status($code,$email)
+	public static function get($code)
 	{
-		$temp = Invitation::where('code', '=', $code)->where('email','=',$email)
-					->first();
-		if($temp)
-		{
-			if(!$temp->active)
-				return "deactive";
-			else if($temp->used)
-				return "used";
-			else if(strtotime("now") > strtotime($temp->expiration))
-				return "expired";
-			else
-				return "valid";
-		}
-		else
-			return "not exist";
-	}
-	public function check($code,$email)
-	{
-		$temp = Invitation::where('code', '=', $code)->where('email','=',$email)
-					->first();
+		$temp = Invite::where('code', '=', $code)->first();
 		if($temp)
 		{
 			if(!$temp->active or $temp->used or strtotime("now") > strtotime($temp->expiration))
-				return False;
-			else
-				return True;
+				return [
+					'status' => 200,
+					'invite' => $temp,
+				];
 		}
-		else
-			return False;
-	}
-	public function delete($code,$email)
-	{
-		$temp = Invitation::where('code', '=', $code)->where('email','=',$email)
-					->delete();
-	}
-	public function emailStatus($email)
-	{
-		$temp = Invitation::where('email','=',$email)
-					->first();
-		if($temp)
-		{
-			$expired = false;
-			if(strtotime("now") > strtotime($temp->expiration))
-				$expired = true;
-			$invite = array(
-					"code"			=> $temp->code,
-					"email"			=> $temp->email,
-					"expiration"	=> $temp->expiration,
-					"expired"		=> $expired,
-					"active"		=> $temp->active,
-					"used"			=> $temp->used
-				);
-			return json_encode($invite);
+		else {
+			return [
+					'status' => 400,
+					'error' => 'Invalid code'
+			];
 		}
-		else
-			return False;
 	}
-	protected function checkEmail($email)
+	public static function delete($email)
 	{
-		$temp = Invitation::where('email', '=', $email)->first();
-		if($temp)
-			return False;
-		else
-			return True;
+		Invite::where('email',$email)->delete();
 	}
+
 
 	protected static function hash_split($hash)
 	{

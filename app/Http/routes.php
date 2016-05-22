@@ -14,6 +14,7 @@
 Route::auth();
 Route::get('/invite', 'InviteController@index');
 Route::post('/invite', 'InviteController@store');
+Route::get('/invite/{code}', 'InviteController@register');
 
 Route::get('/', 'HomeController@index');
 

@@ -15,7 +15,7 @@ class InviteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['register']]);
     }
     public function store(Request $request) {
       $this->validate($request, [
@@ -26,6 +26,14 @@ class InviteController extends Controller
       $job = (new SendInviteEmail($invite))->onQueue('emails');
   		$this->dispatch($job);
       return back()->withInput()->with('status', $status);
+    }
+    public function register($code) {
+      extract(InviteService::get($code));
+      if($status == 200) {
+        return view('auth.register')->with('invite', $invite);
+      } else {
+        return redirect('/');
+      }
     }
     public function index() {
       return view('auth.invite');
